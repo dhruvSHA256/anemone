@@ -14,10 +14,12 @@
 <ul class="titleList">
 {% for page in pages %}
   <li>
-    <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
+    <a href="{{ page.permalink | safe }}">{{ page.date }} : {{ page.title }}</a>
   </li>
 {% endfor %}
 </ul>
+
+<br/>
 
 {% if paginator %}
 <div class="metaData">{% if paginator.previous %}<a href="{{ paginator.first }}">⥶</a> &nbsp <a href="{{ paginator.previous }}"><</a>{% endif %} &nbsp {{ paginator.current_index }} / {{ paginator.number_pagers }} &nbsp {% if paginator.next %}<a href="{{ paginator.next }}">></a> &nbsp <a href="{{ paginator.last }}">⥸</a>{% endif %}</div>

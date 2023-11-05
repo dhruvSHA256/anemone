@@ -52,4 +52,10 @@
     {% endfor %}
     {% endif %}
 </p>
+
+{% if config.extra and config.extra.comments %}
+<script>console.log("hi")</script>
+{% include "comments.html" %}
+{% endif %}
+
 {% endblock content %}
