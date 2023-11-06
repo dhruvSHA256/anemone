@@ -153,8 +153,9 @@ hr {
 }
 
 img {
-  max-width: 90%;
+  width: 100%;
   height: auto;
+  align: center;
   margin: .2rem;
   padding: .2rem;
   border: dashed .2rem var(--metaColor);
