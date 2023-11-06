@@ -3,7 +3,7 @@
 {% block content %}
 {{ section.content | safe }}
 
-{% if config.extra.list_pages %}
+{% if page.extra.list_pages %}
 
 {% if paginator %}
 {% set pages = paginator.pages %}
