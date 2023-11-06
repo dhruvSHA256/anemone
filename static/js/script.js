@@ -1,53 +1,63 @@
-const setTheme = (theme) => {
-  document.documentElement.className = theme;
-  localStorage.setItem('theme', theme);
-    if(theme == 'light')
-        changeGiscusTheme("noborder_light");
-    else
+// https://github.com/mermaid-js/mermaid/issues/1945
+function setTheme(theme) {
+    document.documentElement.className = theme;
+    if (theme === "dark") {
+        document.body.dispatchEvent(new CustomEvent("dark-theme-set"));
+        localStorage.setItem("theme", "dark");
         changeGiscusTheme("noborder_dark");
+    } else {
+        document.body.dispatchEvent(new CustomEvent("light-theme-set"));
+        localStorage.setItem("theme", "light");
+        changeGiscusTheme("noborder_light");
+    }
 }
 
-const hasCodeRun = localStorage.getItem('hasCodeRun');
+function modeSwitcher(theme) {
+    if (theme == "dark") {
+        setTheme("dark");
+    } else {
+        setTheme("light");
+    }
+}
+
+const hasCodeRun = localStorage.getItem("hasCodeRun");
 
 if (!hasCodeRun) {
-  const defaultTheme = "{{ config.extra.default_theme }}";
-  setTheme(defaultTheme);
-  localStorage.setItem('hasCodeRun', 'true');
+    const defaultTheme = "{{ config.extra.default_theme }}";
+    setTheme(defaultTheme);
+    localStorage.setItem("hasCodeRun", "true");
 }
 
 const getTheme = () => {
-  const theme = localStorage.getItem('theme');
-  if (theme) {
-    setTheme(theme);
-  }
-}
-
-getTheme();
-
-const globalColorMode = 'noborder_dark'; // or you get it from some function/global state
+    const theme = localStorage.getItem("theme");
+    if (theme) {
+        setTheme(theme);
+    }
+};
 
 // https://github.com/giscus/giscus/issues/336#issuecomment-1007922777
 function changeGiscusTheme(theme) {
     function sendMessage(message) {
-      const iframe = document.querySelector('iframe.giscus-frame');
-      if (!iframe) return;
-      iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        const iframe = document.querySelector("iframe.giscus-frame");
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, "https://giscus.app");
     }
     sendMessage({
-      setConfig: {
-        theme: theme
-      }
+        setConfig: {
+            theme: theme,
+        },
     });
 }
 
-// set giscus theme after giscus has been loaded
+const globalColorMode = localStorage.getItem("theme")
+    ? "noborder_dark"
+    : "noborder_light";
 function handleGiscusMessage(event) {
-    if (event.origin !== 'https://giscus.app') return;
-    if (!(typeof event.data === 'object' && event.data.giscus)) return;
-
-    // const giscusData = event.data.giscus;
+    if (event.origin !== "https://giscus.app") return;
+    if (!(typeof event.data === "object" && event.data.giscus)) return;
     changeGiscusTheme(globalColorMode);
-    // window.removeEventListener('message', handleMessage);
 }
 
-window.addEventListener('message', handleGiscusMessage);
+window.addEventListener("message", handleGiscusMessage);
+
+getTheme();

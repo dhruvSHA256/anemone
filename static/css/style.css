@@ -158,8 +158,8 @@ img {
   align: center;
   margin: .2rem;
   padding: .2rem;
-  border: dashed .2rem var(--metaColor);
-  border-radius: 15px
+  /* border: dashed .2rem var(--metaColor); */
+  /* border-radius: 15px */
 }
 
 pre {

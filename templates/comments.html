@@ -1,16 +1,30 @@
-<script src="https://giscus.app/client.js"
-        data-repo="dhruvsha256/dhruvsha256.github.io"
-        data-repo-id="R_kgDOIYOkrQ"
-        data-category="General"
-        data-category-id="DIC_kwDOIYOkrc4CacVm"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="{{ config.extra.giscus_dark_theme }}"
-        data-lang="en"
-        crossorigin="anonymous"
-        async>
+{% if config.extra.default_theme == 'dark' %}
+<script>
+  var giscus_theme = "{{config.extra.giscus_dark_theme}}";
 </script>
-<noscript>Please enable JavaScript to view the comments powered by giscus.</noscript>
+{% else %}
+<script>
+  var giscus_theme = "{{config.extra.giscus_light_theme}}";
+</script>
+{% endif %}
+<script>
+  var script = document.createElement("script");
+  script.src = "https://giscus.app/client.js";
+  script.setAttribute("data-repo", "dhruvsha256/dhruvsha256.github.io");
+  script.setAttribute("data-repo-id", "R_kgDOIYOkrQ");
+  script.setAttribute("data-category", "General");
+  script.setAttribute("data-category-id", "DIC_kwDOIYOkrc4CacVm");
+  script.setAttribute("data-mapping", "pathname");
+  script.setAttribute("data-strict", "0");
+  script.setAttribute("data-reactions-enabled", "1");
+  script.setAttribute("data-emit-metadata", "0");
+  script.setAttribute("data-input-position", "bottom");
+  script.setAttribute("data-lang", "en");
+  script.setAttribute("crossorigin", "anonymous");
+  script.setAttribute("data-theme", giscus_theme);
+  document.body.appendChild(script);
+</script>
+
+<noscript>
+  Please enable JavaScript to view the comments powered by giscus.
+</noscript>

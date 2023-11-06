@@ -1,53 +1,5 @@
-<!-- <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.3.0/dist/mermaid.min.js"></script>
+<script src="/js/mermaid.js"> </script>
 <script>
-    const elementCode = ".mermaid";
-    const loadMermaid = function (theme) {
-        try {
-            mermaid.initialize({'theme': theme});
-            mermaid.run({theme}, document.querySelectorAll(elementCode));
-        } catch (err) {
-            console.log(err);
-        }
-    };
-    const saveOriginalData = function () {
-        var els = document.querySelectorAll(elementCode),
-            count = els.length;
-        els.forEach((element) => {
-            element.setAttribute("data-original-code", element.innerHTML);
-            count--;
-        });
-    };
-    const resetProcessed = function () {
-        var els = document.querySelectorAll(elementCode),
-            count = els.length;
-        els.forEach((element) => {
-            if (element.getAttribute("data-original-code") != null) {
-                element.removeAttribute("data-processed");
-                element.innerHTML = element.getAttribute("data-original-code");
-            }
-            count--;
-        });
-    };
-
-    const init = () => {
-        saveOriginalData();
-        document.body.addEventListener("dark-theme-set", () => {
-            resetProcessed();
-            loadMermaid("dark");
-        });
-        document.body.addEventListener("light-theme-set", () => {
-            resetProcessed();
-            loadMermaid("default");
-        });
-    };
-    window.initMermaid = init;
-    window.initMermaid();
-</script>
-<script>
-    var config = {
-        startOnLoad: true,
-        theme: 'dark',
-        align: 'center',
-    };
-    mermaid.initialize(config);
+  window.initMermaid();
 </script>
