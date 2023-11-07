@@ -1,30 +1,27 @@
-{% if config.extra.default_theme == 'dark' %}
 <script>
-  var giscus_theme = "{{config.extra.giscus_dark_theme}}";
+    const defaultTheme = document.getElementsByTagName("head").className;
+    if (defaultTheme == "dark")
+        var giscus_theme = "{{ config.extra.giscus_dark_theme }}";
+    else var giscus_theme = "{{ config.extra.giscus_light_theme }}";
 </script>
-{% else %}
 <script>
-  var giscus_theme = "{{config.extra.giscus_light_theme}}";
-</script>
-{% endif %}
-<script>
-  var script = document.createElement("script");
-  script.src = "https://giscus.app/client.js";
-  script.setAttribute("data-repo", "dhruvsha256/dhruvsha256.github.io");
-  script.setAttribute("data-repo-id", "R_kgDOIYOkrQ");
-  script.setAttribute("data-category", "General");
-  script.setAttribute("data-category-id", "DIC_kwDOIYOkrc4CacVm");
-  script.setAttribute("data-mapping", "pathname");
-  script.setAttribute("data-strict", "0");
-  script.setAttribute("data-reactions-enabled", "1");
-  script.setAttribute("data-emit-metadata", "0");
-  script.setAttribute("data-input-position", "bottom");
-  script.setAttribute("data-lang", "en");
-  script.setAttribute("crossorigin", "anonymous");
-  script.setAttribute("data-theme", giscus_theme);
-  document.body.appendChild(script);
+    var script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.setAttribute("data-repo", "dhruvsha256/dhruvsha256.github.io");
+    script.setAttribute("data-repo-id", "R_kgDOIYOkrQ");
+    script.setAttribute("data-category", "General");
+    script.setAttribute("data-category-id", "DIC_kwDOIYOkrc4CacVm");
+    script.setAttribute("data-mapping", "pathname");
+    script.setAttribute("data-strict", "0");
+    script.setAttribute("data-reactions-enabled", "1");
+    script.setAttribute("data-emit-metadata", "0");
+    script.setAttribute("data-input-position", "bottom");
+    script.setAttribute("data-lang", "en");
+    script.setAttribute("crossorigin", "anonymous");
+    script.setAttribute("data-theme", "noborder_dark");
+    document.body.appendChild(script);
 </script>
 
 <noscript>
-  Please enable JavaScript to view the comments powered by giscus.
+    Please enable JavaScript to view the comments powered by giscus.
 </noscript>

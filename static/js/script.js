@@ -22,7 +22,7 @@ function modeSwitcher(theme) {
 const hasCodeRun = localStorage.getItem("hasCodeRun");
 
 if (!hasCodeRun) {
-  const defaultTheme = "{{ config.extra.default_theme }}";
+  const defaultTheme = document.getElementById("head").className;
   setTheme(defaultTheme);
   localStorage.setItem("hasCodeRun", "true");
 }
